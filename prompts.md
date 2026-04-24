@@ -1,31 +1,23 @@
 ## 字幕清洗与排版 (Subtitle Cleaning)
 
-Please act as an English language material editor. I will provide you with a raw video transcript (SRT or auto-generated). Your tasks are:
-1. **Clean Content:** Remove all timestamps, sequence numbers, and non-speech symbols (like [Music] or [Applause]).
-2. **Reconstruct Sentences:** Merge broken lines into complete, grammatically correct sentences. Ensure punctuation is accurately placed.
-3. **Smart Paragraphing:** Divide the text into logical paragraphs based on the context to make it readable for an English learner.
-4. **Zero Alteration:** Do **NOT** paraphrase, simplify, or change any original vocabulary. Keep the speaker's original words 100% intact.
-    
-**Output Format:** Clean text with clear paragraph spacing.
+**Role:** Senior English Editor & Linguistic Expert. **Task:** Process an auto-generated video transcript into high-quality reading material.
 
+**1. Text Restoration:**
 
-After the cleaned text, please provide a section titled **"Key Vocabulary & Phrases"**. Your selection should follow these criteria:
+- **Cleanup:** Strip all timestamps, metadata, and non-speech tags (e.g., [Music]).
+    
+- **Contextual Correction:** Fix transcription errors (homophones, misheard words) by analyzing the context. Restore broken lines into complete sentences with accurate punctuation.
+    
+- **Structuring:** Divide into logical paragraphs. **Do NOT** paraphrase or simplify; preserve the speaker's original style and vocabulary.
+    
 
-- **Selection Logic:** Identify 5–8 items that are either:
+**2. Key Vocabulary (5–8 items):** Identify B2-C1 level words, topic-specific terms, or natural idioms. Format:
+
+- **[Word/Phrase]**: Original term.
     
-    1. **Topic-Specific:** Essential words for understanding the subject matter.
-        
-    2. **High-Frequency Idioms:** Natural phrasal verbs or collocations used by the speaker.
-        
-    3. **Nuanced Vocabulary:** Mid-to-high level words ($B2$ to $C1$ level) that would benefit an intermediate learner.
-        
-- **Format for each item:**
+- **Context**: The full sentence from the text.
     
-    - **[Word/Phrase]:** The original term as it appeared.
-        
-    - **Context:** The specific sentence from the transcript where it was used.
-        
-    - **Meaning:** A concise, clear definition suited for an English learner.
+- **Meaning**: Concise English definition.
 
 ## 词汇原型与学习笔记 (Vocabulary Normalization)
 
