@@ -15,7 +15,7 @@
               "state": {
                 "file": "prompts.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
               "title": "prompts"
