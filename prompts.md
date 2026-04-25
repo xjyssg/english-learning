@@ -57,4 +57,4 @@ Provide one high-quality, concise, and natural sentence that matches the Formula
 
 |Standard Lemma|Authentic Example|Formula Definition (Nuance & Vibe)|
 |---|---|---|
-|[Lemma + Template]|"[A natural, clear example sentence.]"|[Base Synonym] + [Specific Nuance] [Vibe]|
+|[Lemma + Template]|[A natural, clear example sentence.]|[Base Synonym] + [Specific Nuance] [Vibe]|
