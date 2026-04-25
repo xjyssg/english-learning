@@ -44,7 +44,8 @@ def load_data(file_path):
                         tables.append(current_table)
                     if '---' not in line:
                         parts = [p.strip() for p in line.split('|') if p.strip()]
-                        if len(parts) >= 3 and "Lemma Form" not in parts[0]:
+                        # 兼容新旧两种表头
+                        if len(parts) >= 3 and "Lemma Form" not in parts[0] and "Standard Lemma" not in parts[0]:
                             current_table.append({'lemma': parts[0], 'sentence': parts[1], 'chinese': parts[2]})
                 else:
                     in_table = False
