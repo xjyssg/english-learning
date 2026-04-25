@@ -125,4 +125,10 @@ Output Format (Markdown Table)
 |---|---|---|
 |[Lemma + Template]|[Natural example sentence]|[Base Synonym] + [Specific Nuance] [Vibe]|
 
+Output Example
+| Standard Lemma                | Authentic Example                                                                         | Meaning (Usage-Based Definition)                                                                     |
+| --------------------------------- | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| lace up                       | The marathon runners began to lace up as the starting gun approached.                         | to tighten and fasten one's footwear in preparation for an activity [Physical Prep]                      |
+
+
 
