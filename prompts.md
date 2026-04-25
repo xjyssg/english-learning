@@ -35,14 +35,15 @@ Targets can be designated in two ways:
 
 1. Inline Backtick Marking:
 Words or phrases enclosed in backticks ` ` are treated as targets.
-Example:
-The profits were `nearly double` what `was projected`.
--> Targets: "nearly double", "was projected"
 
 Rules:
-- Each pair of backticks defines ONE complete target chunk
-- Do NOT split inside a pair
-- Support multi-word phrases naturally
+- Each pair of backticks defines ONE complete semantic unit
+- ALWAYS treat the entire chunk as an indivisible meaning unit
+- NEVER split or explain sub-components separately
+
+Example:
+The `meteorological agency` issued a warning.
+-> MUST treat as ONE unit, NOT "meteorological" + "agency"
 
 2. CLI Parameters:
 Appended at the end using --
@@ -52,7 +53,7 @@ Full sentence text -- target 1 -- target 2
 ---
 
 Global Mode:
-If no backticks ` ` or -- markers are present, extract 3–8 high-value chunks from the entire input.
+If no backticks ` ` or -- markers are present, extract 3–8 high-value chunks.
 
 ---
 
@@ -60,14 +61,21 @@ Step 1: Cognitive Standardization (Lemma Form)
 
 Normalization:
 - Convert verbs to base form
-- Preserve standard collocations and phrasal verbs
+- Preserve fixed collocations and phrasal verbs as whole units
 
 Template Mapping:
-- Abstract into reusable forms using:
-  sb., sth., doing, one’s
+- Abstract into sb., sth., doing, one’s where applicable
 
-Clean Data Strict Rule:
-- Do NOT use bold, parentheses, or italics inside table cells
+⚠️ Atomic Meaning Rule (CRITICAL):
+- Each target must be interpreted as ONE semantic block
+- The definition MUST reflect the meaning of the FULL phrase, not its parts
+- DO NOT decompose into word-level meanings
+
+Bad:
+agency → organization + meteorological → weather-related
+
+Good:
+meteorological agency → organization that monitors weather and atmospheric conditions
 
 ---
 
@@ -76,21 +84,38 @@ Step 2: Semantic Formula (English-to-English)
 The Formula:
 [Base Synonym] + [Specific Nuance/Condition]
 
-Rules:
-- No “It means” or similar fillers
-- No contrast structures like “Unlike”
-- Focus on precise semantic differentiation (Logical Delta)
+⚠️ Single-Sense Lock Rule (CRITICAL):
+- Select ONE meaning ONLY per target
+- The chosen meaning MUST be the one used in the example sentence
+- NEVER mix multiple senses
+
+⚠️ Definition-Example Alignment Rule (CRITICAL):
+- The example sentence and formula definition MUST express the EXACT SAME meaning
+- If a word has multiple meanings, you MUST disambiguate BEFORE generating the example
+- NO semantic drift allowed
+
+Bad:
+account for → explain sth.
+Example: be responsible for people ❌
+
+Good:
+account for → be responsible for / ensure presence of sth.
+Example matches responsibility meaning ✅
 
 The Vibe:
 - Append a 1–3 word tag in brackets []
-- Represent tone, context, or usage domain
 
 ---
 
 Step 3: Authentic Example
 
 - Provide ONE concise, natural sentence
-- Must clearly reflect both meaning and vibe
+- MUST strictly match the selected meaning in Step 2
+- MUST NOT accidentally trigger another sense of the same phrase
+
+Self-Check (MANDATORY before output):
+- Can the example sentence be replaced by the definition without meaning change?
+If NO → regenerate
 
 ---
 
