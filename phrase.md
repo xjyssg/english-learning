@@ -71,9 +71,9 @@ Step 4: Example + Alignment
 
 Step 5: Output
 
-|Standard Lemma|Authentic Example|Meaning (Usage-Based Definition)|
-|---|---|---|
-|[Canonical Unit]|[Natural sentence]|[Chinese OR English definition + Vibe]|
+| Standard Lemma   | Authentic Example  | Meaning (Usage-Based Definition)       |
+| ---------------- | ------------------ | -------------------------------------- |
+| [Canonical Unit] | [Natural sentence] | [Chinese OR English definition + Vibe] |
 
 ---
 
