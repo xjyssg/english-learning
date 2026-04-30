@@ -75,6 +75,10 @@
     let hasRemarked = false;
     let wordBankHash = '';
 
+    function renderMD(text) {
+        return String(text).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    }
+
     function simpleHash(str) {
         let h = 0;
         for (let i = 0; i < str.length; i++) {
@@ -270,7 +274,7 @@
             document.getElementById('lbl-progress').innerText = '错题模式 - 剩余: ' + wrongSet.length;
         }
 
-        document.getElementById('lbl-chinese').innerText = item.chinese;
+        document.getElementById('lbl-chinese').innerHTML = renderMD(item.chinese);
         document.getElementById('a-card').classList.add('hidden');
         document.getElementById('btn-next').innerText = "查看答案";
         showAnswer = false;
@@ -292,8 +296,8 @@
         if (!showAnswer) {
             var item = isWrongMode ? wrongSet[0] : fullPool[currentIdx];
             document.getElementById('a-card').classList.remove('hidden');
-            document.getElementById('lbl-lemma').innerText = item.lemma;
-            document.getElementById('lbl-sentence').innerText = item.sentence;
+            document.getElementById('lbl-lemma').innerHTML = renderMD(item.lemma);
+            document.getElementById('lbl-sentence').innerHTML = renderMD(item.sentence);
             document.getElementById('btn-next').innerText = "下一题";
             showAnswer = true;
         } else {

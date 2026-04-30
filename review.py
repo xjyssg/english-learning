@@ -2,9 +2,10 @@ import tkinter as tk
 from tkinter import messagebox
 import random
 import os
+import re
 
 # --- 配置区 ---
-FILE_NAME = r"E:\Learning\english-learning\生词本.md"
+FILE_NAME = os.path.join(os.path.dirname(os.path.abspath(__file__)), "生词本.md")
 # -------------
 
 # 视觉配置
@@ -26,6 +27,10 @@ COLOR_PALETTE = {
     'btn_inactive': '#E2E8F0',
     'btn_active': '#3182CE'  # 选中状态的蓝色
 }
+
+def strip_md(text):
+    """移除简单的 Markdown 格式标记（目前仅处理加粗 **text**）"""
+    return re.sub(r'\*\*(.+?)\*\*', r'\1', str(text))
 
 def load_data(file_path):
     """解析器：按表格边界切分为多个 List"""
@@ -180,7 +185,7 @@ class DynamicVocabApp:
             item = self.wrong_set[0]
             self.lbl_progress.config(text=f"错题模式 - 剩余: {len(self.wrong_set)}")
 
-        self.lbl_chinese.config(text=item['chinese'])
+        self.lbl_chinese.config(text=strip_md(item['chinese']))
         self.a_frame.pack_forget()
         self.btn_action.config(text="查看答案 (Enter)")
         self.show_answer_mode = False
@@ -223,8 +228,8 @@ class DynamicVocabApp:
         if not self.show_answer_mode:
             item = self.wrong_set[0] if self.is_wrong_mode else self.full_pool[self.full_pool_idx]
             self.a_frame.pack(pady=10, fill="x", padx=60)
-            self.lbl_lemma.config(text=item['lemma'])
-            self.lbl_sentence.config(text=f"📖 Example: {item['sentence']}")
+            self.lbl_lemma.config(text=strip_md(item['lemma']))
+            self.lbl_sentence.config(text=f"📖 Example: {strip_md(item['sentence'])}")
             self.btn_action.config(text="下一题 (Enter)")
             self.show_answer_mode = True
         else:
