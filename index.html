@@ -149,8 +149,8 @@
         allTables = c.at || [];
         fullPool = c.fp || [];
         wrongSet = c.ws || [];
-        currentIdx = c.ci || 0;
-        currentDays = c.cd || 3;
+        currentIdx = c.ci !== undefined ? c.ci : 0;
+        currentDays = c.cd !== undefined ? c.cd : 3;
         isWrongMode = c.wm || false;
         wordBankHash = c.h || '';
     }
@@ -168,10 +168,10 @@
         if (cache) {
             restoreCache(cache);
             applyScopeBtns(currentDays);
+            document.getElementById('lbl-wrong-count').innerText = '❌ 待消: ' + wrongSet.length;
             if (isWrongMode) {
                 document.body.style.backgroundColor = "var(--bg-wrong)";
                 document.getElementById('lbl-mode').innerText = "📍 错题强化";
-                document.getElementById('lbl-wrong-count').innerText = '❌ 待消: ' + wrongSet.length;
                 document.getElementById('btn-toggle-mode').textContent = '切回普通模式';
             }
             updateUI();
@@ -185,27 +185,34 @@
             var newHash = simpleHash(text);
             var hashChanged = !wordBankHash || newHash !== wordBankHash;
 
-            if (hashChanged) {
-                var newTables = parseTables(text);
-                allTables = newTables;
-                wordBankHash = newHash;
-                if (restored) syncWrongSet(newTables);
-                initPool(currentDays);
-                showCacheMsg(restored ? '🔄 词库已更新' : '');
-            } else if (!restored) {
+            if (hashChanged && restored) {
+                if (confirm('检测到词库有更新，是否加载最新数据？\n\n"确定" = 更新词库，保留错题本\n"取消" = 暂不更新，下次刷新时再次提醒')) {
+                    var newTables = parseTables(text);
+                    allTables = newTables;
+                    wordBankHash = newHash;
+                    syncWrongSet(newTables);
+                    initPool(currentDays);
+                    showCacheMsg('🔄 词库已更新');
+                } else {
+                    showCacheMsg('📦 已跳过更新');
+                }
+                autoSave();
+                applyScopeBtns(currentDays);
+                if (isWrongMode) {
+                    document.body.style.backgroundColor = "var(--bg-wrong)";
+                    document.getElementById('lbl-mode').innerText = "📍 错题强化";
+                    document.getElementById('btn-toggle-mode').textContent = '切回普通模式';
+                }
+                updateUI();
+            } else if (hashChanged && !restored) {
                 allTables = parseTables(text);
                 wordBankHash = newHash;
                 initPool(currentDays);
+                autoSave();
+                updateUI();
+            } else if (!hashChanged && restored) {
+                autoSave();
             }
-
-            autoSave();
-            applyScopeBtns(currentDays);
-            if (isWrongMode) {
-                document.body.style.backgroundColor = "var(--bg-wrong)";
-                document.getElementById('lbl-mode').innerText = "📍 错题强化";
-                document.getElementById('btn-toggle-mode').textContent = '切回普通模式';
-            }
-            updateUI();
         } catch (e) {
             if (restored) {
                 showCacheMsg('📡 离线，使用缓存');
